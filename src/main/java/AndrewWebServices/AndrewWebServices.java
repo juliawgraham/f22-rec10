@@ -17,7 +17,7 @@ public class AndrewWebServices {
      * 
      * Note that the database has a large latency.
      * 
-     * TODO: use fake to test database.getPassword().
+     * TODO: use fake to test database.getPassword()
      */
     public boolean logIn(String accountName, int password) {
         long startTime = System.currentTimeMillis();
@@ -37,7 +37,7 @@ public class AndrewWebServices {
      * Note that the recommender uses fancy machine learning algorithm
      * and may take very long to return results.
      * 
-     * TODO: use stubs to test recommender.getRecommendation().
+     * TODO: use stubs to test this method.
      */
     public String getRecommendation(String accountName) {
         long startTime = System.currentTimeMillis();
@@ -54,7 +54,7 @@ public class AndrewWebServices {
      * Note that the function has no return value and we want to avoid
      * actually sending emails during testing.
      * 
-     * TODO: use mocks to test promoSetvice.sendPromoEmail(email)
+     * TODO: use mocks to test this method
      */
     public void sendPromoEmail(String email) {
         promoService.mailTo(email);

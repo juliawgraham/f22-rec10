@@ -1,10 +1,7 @@
 package AndrewWebServices;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,48 +15,32 @@ public class AndrewWebServicesTest {
 
     @Before
     public void setUp() {
-        // create mock objects
-        database = mock(Database.class);
-        recommender = mock(RecSys.class);
-        promoService = mock(PromoService.class);
+        database = new Database();
+        recommender = new RecSys();
+        promoService = new PromoService();
 
         andrewWebService = new AndrewWebServices(database, recommender, promoService);
     }
 
     @Test
     public void testGetPassword() {
-        InMemoryDatabase fakeDatabase = new InMemoryDatabase();
-        fakeDatabase.addAccount("Scotty", 17214);
-        assertEquals(17214, fakeDatabase.getPassword("Scotty"));
+        // this is taking way too long to test
+        assertTrue(andrewWebService.logIn("Scotty", 17214));
     }
 
     @Test
     public void testGetRecommendation() {
-        // define stubbing return value before actual execution
-        when(recommender.getRecommendation("Scotty")).thenReturn("The Dropout");
-
-        String result = andrewWebService.getRecommendation("Scotty");
-        System.out.println(result);
-        assertEquals("The Dropout", result);
+        // this is taking way too long to test
+        assertEquals("The Dropout", andrewWebService.getRecommendation("Scotty"));
     }
 
     @Test
     public void testSendEmail() {
-        String email = "scotty@andrew.cmu.edu";
-
-        andrewWebService.sendPromoEmail(email);
-
-        // verify the method is called
-        verify(promoService).mailTo(email);
+        // how to test sendEmail() without any return values?
     }
 
     @Test
     public void testNotSendEmail() {
-        String email = "scotty@andrew.cmu.edu";
-
-        andrewWebService.logIn("Tartan", 17514);
-
-        // verify the method is called
-        verify(promoService, times(0)).mailTo(email);
+        // how to test if any email is sent?
     }
 }
