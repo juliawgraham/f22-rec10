@@ -23,7 +23,7 @@ public class AndrewWebServicesTest {
     }
 
     @Test
-    public void testGetPassword() {
+    public void testLogIn() {
         // this is taking way too long to test
         assertTrue(andrewWebService.logIn("Scotty", 17214));
     }

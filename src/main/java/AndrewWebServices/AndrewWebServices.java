@@ -17,7 +17,7 @@ public class AndrewWebServices {
      * 
      * Note that the database has a large latency.
      * 
-     * TODO: use fake to test database.getPassword()
+     * TODO: use fake to test this method
      */
     public boolean logIn(String accountName, int password) {
         long startTime = System.currentTimeMillis();
