@@ -10,6 +10,10 @@ import java.util.concurrent.TimeUnit;
 
 public class Database {
 
+    public void addAccount(String accountName, int password) {
+        // adding account is a black box
+    }
+
     public int getPassword(String accountName) {
         try {
             TimeUnit.SECONDS.sleep(10);

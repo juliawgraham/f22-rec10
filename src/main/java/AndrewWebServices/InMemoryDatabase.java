@@ -7,7 +7,7 @@ import java.util.Map;
  * InMemoryDatabase is a fake for AndrewWS database, in order to improve tests efficiency. 
  */
 
-public class InMemoryDatabase {
+public class InMemoryDatabase extends Database {
 
     Map<String, Integer> accounts = new HashMap<>();
 

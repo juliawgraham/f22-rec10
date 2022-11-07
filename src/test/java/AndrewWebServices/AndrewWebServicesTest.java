@@ -1,6 +1,8 @@
 package AndrewWebServices;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -11,7 +13,7 @@ import org.junit.Test;
 
 public class AndrewWebServicesTest {
 
-    Database database;
+    Database fakeDatabase;
     RecSys recommender;
     PromoService promoService;
     AndrewWebServices andrewWebService;
@@ -19,18 +21,23 @@ public class AndrewWebServicesTest {
     @Before
     public void setUp() {
         // create mock objects
-        database = mock(Database.class);
+        fakeDatabase = new InMemoryDatabase();
+        fakeDatabase.addAccount("Scotty", 17214);
+
         recommender = mock(RecSys.class);
         promoService = mock(PromoService.class);
 
-        andrewWebService = new AndrewWebServices(database, recommender, promoService);
+        andrewWebService = new AndrewWebServices(fakeDatabase, recommender, promoService);
     }
 
     @Test
-    public void testGetPassword() {
-        InMemoryDatabase fakeDatabase = new InMemoryDatabase();
-        fakeDatabase.addAccount("Scotty", 17214);
-        assertEquals(17214, fakeDatabase.getPassword("Scotty"));
+    public void testLogInSccuess() {
+        assertTrue(andrewWebService.logIn("Scotty", 17214));
+    }
+
+    @Test
+    public void testLogInFailed() {
+        assertFalse(andrewWebService.logIn("Scotty", 17514));
     }
 
     @Test
@@ -57,7 +64,7 @@ public class AndrewWebServicesTest {
     public void testNotSendEmail() {
         String email = "scotty@andrew.cmu.edu";
 
-        andrewWebService.logIn("Tartan", 17514);
+        andrewWebService.logIn("Scotty", 17214);
 
         // verify the method is called
         verify(promoService, times(0)).mailTo(email);
