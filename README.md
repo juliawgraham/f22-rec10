@@ -6,4 +6,5 @@ Run following commands to get started.
 mvn install
 mvn test
 ```
-After implementing test doubles in testing, you should notice the tests are taking less time then before. 
+After implementing test doubles in testing, you should notice the tests are taking less time then before.
+
